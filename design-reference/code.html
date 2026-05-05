@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Recipes Library | Culinary Archivist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Newsreader:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#454936",
+              "error": "#ba1a1a",
+              "background": "#fefae5",
+              "surface-dim": "#dedac6",
+              "surface-container-highest": "#e7e3cf",
+              "on-tertiary": "#ffffff",
+              "on-secondary": "#ffffff",
+              "primary-container": "#2d4b32",
+              "primary": "#17341d",
+              "surface-container": "#f2eeda",
+              "surface-variant": "#e7e3cf",
+              "surface-container-high": "#ece9d4",
+              "secondary-container": "#ff996e",
+              "on-tertiary-fixed": "#191d0e",
+              "surface-container-lowest": "#ffffff",
+              "on-surface": "#1d1c10",
+              "on-secondary-container": "#772f0c",
+              "on-background": "#1d1c10",
+              "surface-bright": "#fefae5",
+              "on-primary-container": "#98ba9a",
+              "surface-tint": "#47664b",
+              "primary-fixed": "#c8ecc9",
+              "tertiary": "#2c301f",
+              "secondary-fixed-dim": "#ffb598",
+              "outline-variant": "#c2c8bf",
+              "inverse-on-surface": "#f5f1dc",
+              "outline": "#737971",
+              "inverse-primary": "#adcfae",
+              "on-tertiary-container": "#b0b49c",
+              "inverse-surface": "#323123",
+              "on-primary-fixed": "#03210c",
+              "error-container": "#ffdad6",
+              "on-secondary-fixed-variant": "#79300e",
+              "on-primary": "#ffffff",
+              "surface": "#fefae5",
+              "on-surface-variant": "#424842",
+              "on-secondary-fixed": "#370e00",
+              "on-error": "#ffffff",
+              "on-primary-fixed-variant": "#2f4d34",
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#e1e5cb",
+              "surface-container-low": "#f8f4df",
+              "secondary": "#974723",
+              "tertiary-fixed-dim": "#c5c9b0",
+              "secondary-fixed": "#ffdbce",
+              "tertiary-container": "#424634",
+              "primary-fixed-dim": "#adcfae"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Newsreader"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body { background-color: #fefae5; color: #1d1c10; font-family: 'Newsreader', serif; }
+      .archive-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; }
+      .recipe-card-bleed { grid-column: span 8; }
+      .recipe-card-standard { grid-column: span 4; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- TopNavBar -->
+<nav class="w-full border-none bg-[#fefae5] dark:bg-stone-950 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
+<div class="text-2xl font-black text-[#17341d] dark:text-emerald-500 tracking-tighter font-headline">
+                Culinary Archivist
+            </div>
+<div class="hidden md:flex items-center space-x-8 font-headline font-bold tracking-tight">
+<a class="text-[#17341d]/70 dark:text-stone-400 hover:text-[#974723] transition-colors" href="#">HOME</a>
+<a class="text-[#17341d]/70 dark:text-stone-400 hover:text-[#974723] transition-colors" href="#">ABOUT</a>
+<a class="text-[#17341d] dark:text-emerald-400 border-b-2 border-[#974723] pb-1" href="#">RECIPES</a>
+<a class="text-[#17341d]/70 dark:text-stone-400 hover:text-[#974723] transition-colors" href="#">NOTES</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="material-symbols-outlined text-[#17341d] dark:text-emerald-500 scale-95 duration-200 ease-in-out">search</button>
+<button class="material-symbols-outlined text-[#17341d] dark:text-emerald-500 scale-95 duration-200 ease-in-out">menu</button>
+</div>
+</div>
+<div class="bg-[#f2eeda] dark:bg-stone-900 h-px w-full"></div>
+</nav>
+<main class="max-w-7xl mx-auto px-8 py-12">
+<!-- Header & Filter Section -->
+<header class="mb-16">
+<h1 class="font-headline font-extrabold text-7xl tracking-tighter text-primary mb-6">Recipes Library</h1>
+<p class="font-body italic text-2xl text-on-surface-variant max-w-2xl">A curated collection of seasonal techniques and heritage ingredients, documented for the intentional kitchen.</p>
+</header>
+<!-- Filters Bar -->
+<section class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div class="flex flex-wrap gap-4">
+<button class="px-6 py-2 bg-primary text-on-primary font-headline text-sm font-bold tracking-widest uppercase">All Recipes</button>
+<button class="px-6 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface font-headline text-sm font-bold tracking-widest uppercase transition-colors">Main Course</button>
+<button class="px-6 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface font-headline text-sm font-bold tracking-widest uppercase transition-colors">Breakfast</button>
+<button class="px-6 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface font-headline text-sm font-bold tracking-widest uppercase transition-colors">Fermentation</button>
+<button class="px-6 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface font-headline text-sm font-bold tracking-widest uppercase transition-colors">Pastry</button>
+</div>
+<div class="flex items-center gap-4 border-b border-on-surface/10 pb-2 min-w-[240px]">
+<span class="font-label text-xs font-bold uppercase tracking-widest text-on-surface/50">Sort By:</span>
+<select class="bg-transparent font-body text-lg focus:ring-0 border-none p-0 cursor-pointer">
+<option>Newest Additions</option>
+<option>Alphabetical</option>
+<option>Prep Time</option>
+<option>Difficulty</option>
+</select>
+</div>
+</section>
+<!-- Recipe Grid: Asymmetric Layout -->
+<div class="archive-grid">
+<!-- Featured Card (Large Bleed) -->
+<article class="recipe-card-bleed group relative bg-surface-container p-8 rounded-none transition-all duration-500 hover:bg-surface-container-high">
+<div class="flex flex-col md:flex-row gap-8">
+<div class="md:w-3/5 overflow-hidden">
+<img alt="Roasted Heirloom Carrots" class="w-full h-[400px] object-cover rounded-md grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700" data-alt="Close-up of roasted heirloom carrots with charred edges and fresh herbs on a rustic ceramic plate with natural sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdCrf_6DPKX90Hco_fdTUXKz51-LogcYoihdYgWTfrRhCKPad8K4FuV8CILqlQjWXsZp4hmcYJnOfS2_uMxJj86b4jcJeOuQnk-7ckXTsiT5vNVSafMKcMJTyHuXRs2RbUbrOtF2Qe_JUout-ZiqC0CqmfvAVWp6hABWo1hekDWN_t38mg_q7t6EUGtfiteUinlBLr06aaN5FqkUaGDVZtYdSLDyQjFWDqyRcUzuroCMZ1IwL3Kjp0UTG95E8OTmin79o6T5jtRAbl"/>
+</div>
+<div class="md:w-2/5 flex flex-col justify-center">
+<div class="mb-4">
+<span class="font-label text-xs font-extrabold uppercase tracking-[0.2em] text-secondary">Seasonal Highlight</span>
+</div>
+<h2 class="font-headline font-extrabold text-5xl leading-none text-primary mb-6">Roasted Heirloom Carrots</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary/60 text-sm">schedule</span>
+<span class="font-label text-sm font-bold uppercase tracking-widest">45 MINUTES</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary/60 text-sm">bar_chart</span>
+<span class="font-label text-sm font-bold uppercase tracking-widest">INTERMEDIATE</span>
+</div>
+</div>
+<p class="font-body text-xl italic text-on-surface-variant mb-8">Enhanced with a wildflower honey glaze and smoked tahini drizzle, these roots define autumnal warmth.</p>
+<a class="inline-block border-b-2 border-secondary pb-1 font-headline font-bold text-primary hover:text-secondary transition-colors" href="#">VIEW ARCHIVE ENTRY</a>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="recipe-card-standard bg-surface-container-low p-6 group hover:bg-surface-container transition-colors">
+<div class="aspect-[4/5] overflow-hidden mb-6">
+<img alt="Sourdough Techniques" class="w-full h-full object-cover rounded-md grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" data-alt="Artisan sourdough loaf with intricate score patterns on a flour-dusted wooden table in a sunlit kitchen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1jiC6Az1ZGXBhMPpaku6BGGKZ0u7QdSNH6Svy70TDgNtbsRixE7qIgQvU6wJZBsfoPSXX190Vsbje4UrxAzeh-5cTltFTP0mNTAC1747vXHVgVdPHdo2ySY7Z1uamyWDtfSE2FKpmHAFQjkTzCuXW9MhbHMYNZc7HZz-4kNbRVFKzKREhfdxUnj7v9azlCnU0-B7wqxx1mKijXHsb7w8UWoybj2gg_v7fyBWho8eSKSF4gqB6AnZqphyQ8w86Pbc-zMGAt5nuLVG2"/>
+</div>
+<span class="font-label text-[10px] font-extrabold uppercase tracking-[0.2em] text-on-surface/40 mb-2 block">Technique Study</span>
+<h3 class="font-headline font-bold text-2xl text-primary mb-4">Overnight Sourdough</h3>
+<div class="flex justify-between items-center border-t border-on-surface/5 pt-4">
+<span class="font-label text-xs font-bold uppercase tracking-widest">18 HOURS</span>
+<span class="font-label text-xs font-bold uppercase tracking-widest text-secondary">ADVANCED</span>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="recipe-card-standard bg-surface-container-low p-6 group hover:bg-surface-container transition-colors">
+<div class="aspect-[4/5] overflow-hidden mb-6">
+<img alt="Braised Short Ribs" class="w-full h-full object-cover rounded-md grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" data-alt="Rich beef short ribs braised in red wine gravy with root vegetables in a dark cast iron pot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNW97gPnbMoNWMXK4_OO01f5xkLoiYlIkptvh_7_0TwonqMwZOdbEe5b-SHoN8k32yQSaPxGJrS5ilHVBvAQIQv5izjmImaLMRlK2WC7R1a-Sqv5Mw9_fYKsv6RoeDO4S3R52UIe0Gqo95qfOFreP5yykezWcgska7R8e_XKJVWS4MSPOnj1BW34alJEwpoRBR3FIHnv3BeARJPjZnG14H-uy4YaveHqmn8iWiHl706hjZyBg5rR5UJHDOaZkyKcO9eHwTyUFfXn79"/>
+</div>
+<span class="font-label text-[10px] font-extrabold uppercase tracking-[0.2em] text-on-surface/40 mb-2 block">Main Course</span>
+<h3 class="font-headline font-bold text-2xl text-primary mb-4">Red Wine Braised Ribs</h3>
+<div class="flex justify-between items-center border-t border-on-surface/5 pt-4">
+<span class="font-label text-xs font-bold uppercase tracking-widest">4 HOURS</span>
+<span class="font-label text-xs font-bold uppercase tracking-widest text-secondary">INTERMEDIATE</span>
+</div>
+</article>
+<!-- "Chef's Note" Injected Card (Asymmetric) -->
+<aside class="col-span-4 flex items-center justify-center p-8">
+<div class="bg-secondary-fixed p-10 transform -rotate-1 shadow-lg max-w-sm">
+<h4 class="font-body italic text-2xl font-semibold text-on-secondary-fixed-variant mb-4 underline decoration-on-secondary-fixed/20 underline-offset-8">Chef's Note #104</h4>
+<p class="font-body text-lg text-on-secondary-fixed leading-relaxed">"The secret to the carrots isn't the honey, but the cold-shocking of the roots before they hit the oven. It preserves the structural integrity while allowing for a deep char."</p>
+<div class="mt-6 font-headline font-black text-xs tracking-widest text-on-secondary-fixed-variant">— ARCHIVIST J.M.</div>
+</div>
+</aside>
+<!-- Card 4 -->
+<article class="recipe-card-standard bg-surface-container-low p-6 group hover:bg-surface-container transition-colors">
+<div class="aspect-[4/5] overflow-hidden mb-6">
+<img alt="Wild Mushroom Risotto" class="w-full h-full object-cover rounded-md grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" data-alt="Creamy risotto topped with sautéed wild mushrooms and shaved parmesan cheese in a shallow white bowl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgQ0I_7SehHyHyR7uePavF1LY-yLi-Yj7sMfoGVokchP5BTITvvU0o5uCXdSHv9XiJ7AWbbL9giZoO5ThiBPI6qK79xO1nKorE213t5RXHoyHx-o0rRBAGSm0ltfXwkrrv93G_cUJErbTDu_8xtD7zr4u7wYeYsGWgt2oiHIlDpVvT6lWwGF8aQ8_NNJNEXiYyuqpPtkVmy2V3Z-GgOZ4P0bZkFI7xyEQqk8vtk4ED44qGKG8BFabCw-VrlLIaWGmtv1XMKBeZusah"/>
+</div>
+<span class="font-label text-[10px] font-extrabold uppercase tracking-[0.2em] text-on-surface/40 mb-2 block">Main Course</span>
+<h3 class="font-headline font-bold text-2xl text-primary mb-4">Wild Mushroom Risotto</h3>
+<div class="flex justify-between items-center border-t border-on-surface/5 pt-4">
+<span class="font-label text-xs font-bold uppercase tracking-widest">35 MINUTES</span>
+<span class="font-label text-xs font-bold uppercase tracking-widest text-secondary">INTERMEDIATE</span>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="recipe-card-standard bg-surface-container-low p-6 group hover:bg-surface-container transition-colors">
+<div class="aspect-[4/5] overflow-hidden mb-6">
+<img alt="Winter Fruit Galette" class="w-full h-full object-cover rounded-md grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700" data-alt="Rustic fruit galette with flaky golden crust and bubbling berry filling on a marble surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIEn8H--Cg5M3u0NvXpZuE_9Kiggf-Ybvz8AwKnhZngezrz5evQDDfIx3jm4onmmWrgsM988g3WTB19dXvvurTz4_ron17PjOV0eNW66sHQiMYOe2ugIPxns4sALeoMgkQ4kNoGKCOrOtHPMx9RDYkNpN73atbtPr8yDIl9QEh4ulCW0-CPHFSPF0nhP-9Pm1YyOv5NAdAYwxDIt4Vwx8K84FsFV1HuzA465Yru28aWueToQNmp0pCeuTfef7qs0trgwRVOKZYoJDU"/>
+</div>
+<span class="font-label text-[10px] font-extrabold uppercase tracking-[0.2em] text-on-surface/40 mb-2 block">Pastry</span>
+<h3 class="font-headline font-bold text-2xl text-primary mb-4">Rustic Winter Galette</h3>
+<div class="flex justify-between items-center border-t border-on-surface/5 pt-4">
+<span class="font-label text-xs font-bold uppercase tracking-widest">60 MINUTES</span>
+<span class="font-label text-xs font-bold uppercase tracking-widest text-secondary">EASY</span>
+</div>
+</article>
+<!-- Secondary Featured (Span 8) -->
+<article class="recipe-card-bleed group relative bg-primary p-8 rounded-none transition-all duration-500 overflow-hidden">
+<div class="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+<div class="flex flex-col md:flex-row-reverse gap-8 relative z-10">
+<div class="md:w-3/5 overflow-hidden">
+<img alt="Spring Pea Salad" class="w-full h-[400px] object-cover rounded-md group-hover:scale-105 transition-transform duration-1000" data-alt="Vibrant green pea salad with fresh mint, feta cheese, and lemon zest in a modern matte black bowl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-g9rWmNB0NJMMhahUrz0LDhNA7zEk2sYcluJf24uj411Htbsu-BYuB1LUaa8Qgw-aBEBTjbvujRUdLFC3yI-DY2iuzkjnGjQMaXUSy2IOmqKssEG8ww3qZYGey3hodxbFgVwdN_QRVNPHaL7QwgyNQAmW7G8geiWr6dFttE2yp0KH3wl7noYp6OIVyXaHiTF50kL-YoSUl0DDt_QhfrzlvylvKTgjeowaUrDVXXRLnzAUteiwFfE7rm6vqxYemuIIBkwUXVZWHCqd"/>
+</div>
+<div class="md:w-2/5 flex flex-col justify-center text-on-primary">
+<div class="mb-4">
+<span class="font-label text-xs font-extrabold uppercase tracking-[0.2em] text-on-primary-container">Spring Archive</span>
+</div>
+<h2 class="font-headline font-extrabold text-5xl leading-none mb-6">Early Spring Pea &amp; Mint Salad</h2>
+<p class="font-body text-xl italic text-on-primary-container mb-8">A study in brightness and texture. Hand-shelled peas meeting the cooling edge of garden mint.</p>
+<button class="bg-secondary px-8 py-3 font-headline font-bold text-sm tracking-widest uppercase hover:bg-on-secondary-container transition-colors w-max">EXPLORE METHOD</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="mt-20 flex justify-center items-center gap-12">
+<button class="font-headline font-bold text-primary/40 hover:text-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">arrow_back</span> PREVIOUS
+            </button>
+<div class="flex gap-4 font-headline font-bold">
+<span class="text-secondary border-b-2 border-secondary">01</span>
+<span class="text-primary/40 hover:text-primary cursor-pointer">02</span>
+<span class="text-primary/40 hover:text-primary cursor-pointer">03</span>
+</div>
+<button class="font-headline font-bold text-primary hover:text-secondary transition-colors flex items-center gap-2">
+                NEXT <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- NavigationDrawer (Mental Blueprint Only) -->
+<!-- Managed via JS or standard sidebar logic for actual interaction -->
+<!-- Footer -->
+<footer class="w-full mt-20 bg-[#f2eeda] dark:bg-stone-900">
+<div class="max-w-7xl mx-auto px-8 py-12 flex flex-col md:flex-row justify-between items-center border-t border-[#17341d]/5">
+<div class="font-headline font-black uppercase tracking-widest text-sm text-[#17341d] dark:text-emerald-500 mb-6 md:mb-0">
+                Culinary Archivist
+            </div>
+<div class="font-body italic text-lg text-[#17341d] dark:text-emerald-500 text-center md:text-left mb-6 md:mb-0">
+                © 2024 Culinary Archivist. Crafted for the intentional kitchen.
+            </div>
+<div class="flex gap-8 font-label text-sm font-bold uppercase tracking-widest text-[#17341d]/60">
+<a class="hover:text-[#974723] transition-colors" href="#">Privacy</a>
+<a class="hover:text-[#974723] transition-colors" href="#">Terms</a>
+<a class="hover:text-[#974723] transition-colors" href="#">Instagram</a>
+</div>
+</div>
+</footer>
+</body></html>
